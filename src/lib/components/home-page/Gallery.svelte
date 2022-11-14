@@ -36,7 +36,7 @@
   <div class="gallery_wraper">
 
     {#each imgs as img, i}
-    <img data-key={i} class="gallery_img" src={img} alt={`${i}`.jpg}>
+    <img data-key={i} class="gallery_img" src={img} alt={`${i}.jpg`}>
     {/each}
 
   </div>
