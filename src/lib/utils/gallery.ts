@@ -3,6 +3,8 @@ import gsap from "gsap";
  *  COLUMNS
  */
 let colsNumber;
+let colGap = 8;
+let rowGap = 16
 
 const setColsNumber = (windowWidth : number) =>
 {
@@ -26,6 +28,7 @@ const setColsNumber = (windowWidth : number) =>
 const getColsWidth = ( galleryWidth : number, colsNumber : number) =>
 {
   let colsWidth = [];
+  galleryWidth = galleryWidth - (colGap * colsNumber -1)
   let colWidth = Math.floor( galleryWidth / colsNumber )
 
   if( galleryWidth % colsNumber !=0 )
@@ -50,10 +53,6 @@ const getColsWidth = ( galleryWidth : number, colsNumber : number) =>
  *  IMAGES
  */
 
-let marginLeft = 8;
-let marginTop = 16
-
-
 const getImageWidth = ( i : number, colsWidth : number[], colsNumber : number) =>
 {
     const colIndex = i % colsNumber;
@@ -70,7 +69,7 @@ const getImageLeft = ( i : number, colsWidth : number[], colsNumber : number ) =
   while( index != 0)
   {
     index--
-    left += colsWidth[index] + marginLeft
+    left += colsWidth[index] + colGap
   }
 
   return left
@@ -87,7 +86,7 @@ const getImageTop = ( i : number, imgs : NodeListOf <Element>, colsNumber : numb
 
     if(imgs[n].clientHeight)
     {
-      top += imgs[n].clientHeight + marginTop
+      top += imgs[n].clientHeight + rowGap
     }
   }
 

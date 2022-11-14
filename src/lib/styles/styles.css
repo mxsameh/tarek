@@ -3,6 +3,7 @@
 :root{
   --header-height: 100px;
   --sidebar-footer-height: 73px;
+  --menu-btn-height: 80px;
 }
 
 *{

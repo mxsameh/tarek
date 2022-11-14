@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Header from "$lib/components/generics/Header.svelte";
+	import Menu from "$lib/components/generics/Menu.svelte";
 	import Gallery from "$lib/components/home-page/Gallery.svelte";
   import Overlay from "$lib/components/home-page/Overlay.svelte";
 	import Sidebar from "$lib/components/home-page/Sidebar.svelte";
@@ -7,10 +8,19 @@
 	import { onMount } from "svelte";
 
   let pageWraper : HTMLDivElement;
+  let isMobileBp = false;
 
   onMount(()=>{
-    const breakpoint = getBreakpoint();
+    let breakpoint = getBreakpoint();
+    if(breakpoint == 'mobile') isMobileBp = true
+
+    window.addEventListener('resize',()=>{
+      let breakpoint = getBreakpoint();
+      if(breakpoint == 'mobile') isMobileBp = true
+      else isMobileBp = false
+    })
     pageWraper.style.opacity = `1`
+
   })
   
 </script>
@@ -21,10 +31,16 @@
   <Header />
   <main class="content">
     <!-- SIDEBAR -->
-    <Sidebar />
+    {#if !isMobileBp }
+      <Sidebar />
+    {/if}
     <!-- GALLERY -->
     <Gallery />
   </main>
+
+  {#if isMobileBp}
+    <Menu />
+  {/if}
 </div>
 
 <style lang="scss">
@@ -41,6 +57,7 @@
 {
   .content{
     padding-top: 40px;
+    display: block;
   }
 }
 </style>

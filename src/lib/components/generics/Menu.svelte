@@ -1,6 +1,7 @@
 <script lang="ts">
   import gsap from 'gsap'
 	import { onMount } from 'svelte';
+	import Sidebar from '../home-page/Sidebar.svelte';
 
 let menu : HTMLDivElement;
 let menuWraper : HTMLDivElement;
@@ -88,7 +89,9 @@ const openMenu = () =>
 </div>
 
 <div class="menu" class:active={menuOpened} bind:this={menu}>
-  <div class="menu-wraper" bind:this={menuWraper}></div>
+  <div class="menu-wraper" bind:this={menuWraper}>
+    <Sidebar />
+  </div>
 </div>
 
 <style lang="scss">
@@ -97,7 +100,9 @@ const openMenu = () =>
     height: 100vh;
     display: none;
     overflow: hidden;
-    position: relative;
+    position: fixed;
+    top: 0;
+    left: 0;
   }
   .active{
     display: block;
@@ -105,8 +110,9 @@ const openMenu = () =>
   .menu-wraper{
     width: 100%;
     height: 100%;
-    background-color: #333;
     transform: translateY(100%) ;
+    background-color: white;
+    padding: 0 24px;
   }
   .menu_btn{
     z-index: 10;

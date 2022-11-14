@@ -14,12 +14,15 @@
 		'https://images.squarespace-cdn.com/content/v1/5b27a34be17ba335ea8d1983/1643664358381-QM0SKDYD9881JWQJDQP0/A.TAREK002-2.jpg'
 	]; 
 
-  let galleryWidth : number;
 
+  let galleryWidth : number;
   onMount(() =>
   {
     const $gallery = document.querySelector('.gallery') as HTMLDivElement
     const $imgs = document.querySelectorAll('.gallery_img')
+
+    // galleryWidth = $gallery.clientWidth;
+
 
     positionImages($imgs, galleryWidth)
 
@@ -27,13 +30,14 @@
       positionImages($imgs, galleryWidth)
     })
 
+
   })
 
-
+  
 </script>
 
-<div class="gallery" bind:clientWidth={galleryWidth}>
-  <div class="gallery_wraper">
+<div class="gallery">
+  <div class="gallery_wraper" bind:clientWidth={galleryWidth}>
 
     {#each imgs as img, i}
     <img data-key={i} class="gallery_img" src={img} alt={`${i}.jpg`}>

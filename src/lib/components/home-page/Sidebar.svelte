@@ -140,7 +140,26 @@
 	@media screen and (max-Width : 767px)
 	{
 		.sidebar{
-			display: none;
+			width: 100%;
+			align-items: center;
+			padding: 24px 0;
+			padding-top: calc(var(--header-height) + 24px);
+		}
+		.projects-wraper{
+			height: auto;
+		}
+		.project{
+			font-size: 24px;
+		}
+		.work-item{
+			font-size: 20px;
+		}
+		.projects-list,.work{
+			align-items: center;
+		}
+		.footer{
+			// margin-top: 0;
+			margin-bottom: calc( var(--menu-btn-height) + 16px );
 		}
 	}
 
