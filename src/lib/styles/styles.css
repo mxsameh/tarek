@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Bungee&family=Rammetto+One&family=Roboto:wght@400;500;700&display=swap');
+
+:root{
+  --header-height: 100px;
+  --sidebar-footer-height: 73px;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /* font-family: 'Roboto', sans-serif; */
+  /* font-family: 'Bungee', cursive; */
+}
+
+li{
+  list-style: none;
+}
+
+a{
+  color: black;
+  text-decoration: none;
+}
+
+button{
+  border: none;
+  outline: none;
+  background-color: transparent;
+}
+
+img{
+  display: block;
+  border: none;
+  outline: none;
+  border-image: none;
+}
