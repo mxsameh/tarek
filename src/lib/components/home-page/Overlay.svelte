@@ -34,6 +34,7 @@
 		let maxScroll = (window.innerHeight * (height - 100)) / 100;
 		let y = window.pageYOffset;
 
+		console.log( maxScroll );
 		window.addEventListener('scroll', (e) => {
       if(!scroll) return
 
@@ -46,11 +47,11 @@
 			rightBox.style.left = `${pos}%`;
 
 			let scale = (window.pageYOffset - 400) * 0.02;
-			console.log(scale);
 			scale = gsap.utils.clamp(1, 50, scale);
 			title.style.scale = `${scale}`;
 
-			if (window.pageYOffset == maxScroll) {
+
+			if (window.pageYOffset >= maxScroll - 2) {
 				viewPage();
 			}
 		});

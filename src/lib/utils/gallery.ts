@@ -2,6 +2,27 @@ import gsap from "gsap";
 /**
  *  COLUMNS
  */
+let colsNumber;
+
+const setColsNumber = (windowWidth : number) =>
+{
+  if(windowWidth > 1240)
+  {
+    colsNumber = 4
+  }else if (windowWidth > 1024 )
+  {
+    colsNumber = 3
+  }else if (windowWidth > 768)
+  {
+    colsNumber = 2
+  }else
+  {
+    colsNumber = 1 
+  }
+
+  return colsNumber
+}
+
 const getColsWidth = ( galleryWidth : number, colsNumber : number) =>
 {
   let colsWidth = [];
@@ -29,17 +50,9 @@ const getColsWidth = ( galleryWidth : number, colsNumber : number) =>
  *  IMAGES
  */
 
-const addSpacing = (i : number, img : Element, colsNumber : number) =>
-{
-  if(i >= colsNumber)
-  {
-    gsap.set(img,{paddingTop: 16})
-  }
-  if(i % colsNumber != colsNumber -1)
-  {
-    gsap.set(img,{paddingRight: 8})
-  }
-}
+let marginLeft = 8;
+let marginTop = 16
+
 
 const getImageWidth = ( i : number, colsWidth : number[], colsNumber : number) =>
 {
@@ -57,7 +70,7 @@ const getImageLeft = ( i : number, colsWidth : number[], colsNumber : number ) =
   while( index != 0)
   {
     index--
-    left += colsWidth[index]
+    left += colsWidth[index] + marginLeft
   }
 
   return left
@@ -71,20 +84,24 @@ const getImageTop = ( i : number, imgs : NodeListOf <Element>, colsNumber : numb
   while( n - colsNumber >= 0 )
   {
     n -= colsNumber
-    top += imgs[n].clientHeight
+
+    if(imgs[n].clientHeight)
+    {
+      top += imgs[n].clientHeight + marginTop
+    }
   }
 
   return top
 }
 
-const positionImages = (imgs : NodeListOf<Element>, galleryWidth : number, colsNumber : number) =>
+const positionImages = (imgs : NodeListOf<Element>, galleryWidth : number) =>
 {
-  
+  let windowWidth = window.innerWidth
+  let colsNumber = setColsNumber(windowWidth) 
   let colsWidth = getColsWidth(galleryWidth, colsNumber)
 
   imgs.forEach((img, i) =>
   {
-    addSpacing(i, img, colsNumber)
     let width = getImageWidth(i, colsWidth, colsNumber);
     let left = getImageLeft(i, colsWidth, colsNumber);
     let top = getImageTop(i, imgs, colsNumber);

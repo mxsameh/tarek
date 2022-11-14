@@ -15,18 +15,18 @@
 	]; 
 
   let galleryWidth : number;
-  let colsNumber = 3;
-
-
 
   onMount(() =>
   {
+    const $gallery = document.querySelector('.gallery') as HTMLDivElement
     const $imgs = document.querySelectorAll('.gallery_img')
-    positionImages($imgs, galleryWidth, colsNumber)
+
+    positionImages($imgs, galleryWidth)
 
     window.addEventListener('resize',(e)=>{
-      positionImages($imgs, galleryWidth, colsNumber)
+      positionImages($imgs, galleryWidth)
     })
+
   })
 
 
@@ -36,7 +36,7 @@
   <div class="gallery_wraper">
 
     {#each imgs as img, i}
-    <img data-key={i} class="gallery_img" src={img} alt="">
+    <img data-key={i} class="gallery_img" src={img} alt={`${i}`.jpg}>
     {/each}
 
   </div>
@@ -46,9 +46,9 @@
   .gallery{
     width: 100%;
     height: 100%;
-    overflow: scroll;
     scrollbar-width: none;
     padding: 24px 0;
+    overflow: scroll;
   }
   .gallery_wraper{
     width: 100%;
@@ -56,6 +56,7 @@
   }
   .gallery_img{
     position: absolute;
+    background-color: beige;
   }
 
   
