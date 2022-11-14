@@ -1,10 +1,11 @@
 <script>
-	import Scroll from "$lib/components/test/scroll.svelte";
+	import Menu from "$lib/components/generics/Menu.svelte";
+import Scroll from "$lib/components/test/scroll.svelte";
 
   
 </script>
 
-<Scroll/>
+<Menu/>
 
 <style>
   

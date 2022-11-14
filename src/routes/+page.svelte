@@ -3,11 +3,13 @@
 	import Gallery from "$lib/components/home-page/Gallery.svelte";
   import Overlay from "$lib/components/home-page/Overlay.svelte";
 	import Sidebar from "$lib/components/home-page/Sidebar.svelte";
+	import getBreakpoint from "$lib/utils/breakpoint";
 	import { onMount } from "svelte";
 
   let pageWraper : HTMLDivElement;
 
   onMount(()=>{
+    const breakpoint = getBreakpoint();
     pageWraper.style.opacity = `1`
   })
   
@@ -17,15 +19,12 @@
 
 <div class="page-wraper" style:opacity='0' bind:this={pageWraper}>
   <Header />
-
   <main class="content">
     <!-- SIDEBAR -->
     <Sidebar />
-
     <!-- GALLERY -->
     <Gallery />
   </main>
-
 </div>
 
 <style lang="scss">
@@ -37,5 +36,11 @@
   display: flex;
   gap: 40px;
 }
-  
+
+@media screen and (max-width: 767px)
+{
+  .content{
+    padding-top: 40px;
+  }
+}
 </style>

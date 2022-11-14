@@ -137,6 +137,13 @@
 		}
 	}
 
+	@media screen and (max-Width : 767px)
+	{
+		.sidebar{
+			display: none;
+		}
+	}
+
 	@keyframes gradient {
 		0% {
 			background-position: 0% 50%;
