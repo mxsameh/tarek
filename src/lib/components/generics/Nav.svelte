@@ -33,8 +33,7 @@
 
 </script>
 
-<!-- flex container -->
-<div class="sidebar">
+<nav class="nav">
 
 	<!-- nav with shoots and projects -->
 	<div class="projects-wraper">
@@ -52,30 +51,21 @@
 		</nav>
 	</div>
 
-	<!-- footer with links to work and info -->
-	<footer class="footer">
-		<!-- list of work done -->
-		<div class="work">
-			<a href="/jpeg-city" class="work-item">JPEG CITY</a>
-			<a href="/Talks" class="work-item">Talks</a>
-			<a href="/contact" class="work-item">About & Contact</a>
-		</div>
-		<!-- socail links -->
-		<div class="social" />
-	</footer>
+	<!-- list of work done -->
+	<div class="work">
+		<a href="/jpeg-city" class="work-item">JPEG CITY</a>
+		<a href="/Talks" class="work-item">Talks</a>
+		<a href="/contact" class="work-item">About & Contact</a>
+	</div>
 
-</div>
+</nav>
 
 <style lang="scss">
-	.sidebar {
-    width: fit-content;
-		height: 100%;
-		padding-top: var(--header-height);
+	.nav{
 		display: flex;
 		flex-direction: column;
-		flex-shrink: 0;
-		flex-grow: 0;
     font-family: 'Roboto';
+		height: 100%;
 	}
 	.projects-wraper{
 		height: 100%;
@@ -119,15 +109,12 @@
 		animation: gradient 8s ease-in-out infinite;
 	}
 
-  .footer{
-    margin-bottom: 24px;
-		margin-top: auto;
-  }
-
 	.work {
 		display: flex;
 		flex-direction: column;
 		gap: 8px;
+    margin-bottom: 24px;
+		margin-top: auto;
 	}
 	.work-item {
 		font-size: 16px;
@@ -139,7 +126,7 @@
 
 	@media screen and (max-Width : 767px)
 	{
-		.sidebar{
+		.nav{
 			width: 100%;
 			align-items: center;
 			padding: 24px 0;
@@ -157,7 +144,7 @@
 		.projects-list,.work{
 			align-items: center;
 		}
-		.footer{
+		.work{
 			// margin-top: 0;
 			margin-bottom: calc( var(--menu-btn-height) + 16px );
 		}

@@ -51,7 +51,6 @@
     width: 100%;
     height: 100%;
     scrollbar-width: none;
-    padding: 24px 0;
     overflow: scroll;
   }
   .gallery_wraper{

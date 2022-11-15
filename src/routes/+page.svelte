@@ -3,7 +3,7 @@
 	import Menu from "$lib/components/generics/Menu.svelte";
 	import Gallery from "$lib/components/home-page/Gallery.svelte";
   import Overlay from "$lib/components/home-page/Overlay.svelte";
-	import Sidebar from "$lib/components/home-page/Sidebar.svelte";
+	import Nav from "$lib/components/generics/Nav.svelte";
 	import getBreakpoint from "$lib/utils/breakpoint";
 	import { onMount } from "svelte";
 
@@ -27,16 +27,24 @@
 
 <!-- <Overlay/> -->
 
-<div class="page-wraper" style:opacity='0' bind:this={pageWraper}>
+<div class="page" style:opacity='0' bind:this={pageWraper}>
+
   <Header />
-  <main class="content">
+
+  <div class="page_content">
     <!-- SIDEBAR -->
     {#if !isMobileBp }
-      <Sidebar />
+    <aside class="sidebar">
+      <Nav />
+    </aside>
     {/if}
+
     <!-- GALLERY -->
-    <Gallery />
-  </main>
+    <main class="main">
+      <Gallery />
+    </main>
+
+  </div>
 
   {#if isMobileBp}
     <Menu />
@@ -45,19 +53,32 @@
 
 <style lang="scss">
 
-.content{
-  padding: 0 24px;
-  height: 100vh;
-  overflow: hidden;
-  display: flex;
-  gap: 40px;
-}
-
-@media screen and (max-width: 767px)
-{
-  .content{
-    padding-top: 40px;
-    display: block;
+  .main{
+    width: 100%;
+    height: 100%;
+    padding: 24px 0;
   }
-}
+
+  .page_content{
+    padding: 0 24px;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    gap: 40px;
+  }
+	.sidebar {
+    width: fit-content;
+		height: 100%;
+		padding-top: var(--header-height);
+		flex-shrink: 0;
+		flex-grow: 0;
+	}
+
+  @media screen and (max-width: 767px)
+  {
+    .page_content{
+      padding-top: 40px;
+      display: block;
+    }
+  }
 </style>
