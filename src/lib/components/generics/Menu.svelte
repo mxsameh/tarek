@@ -1,8 +1,7 @@
 <script lang="ts">
   import gsap from 'gsap'
 	import { onMount } from 'svelte';
-	import type { DispatchOptions } from 'svelte/internal';
-	import Sidebar from './Nav.svelte';
+	import Nav from './Nav.svelte';
 	import MenuBtn from './MenuBtn.svelte';
 
 let menuWraper : HTMLDivElement;
@@ -54,7 +53,7 @@ const openMenu = () =>
 
 <div class="menu" class:active={menuOpened}>
   <div class="menu-wraper" bind:this={menuWraper}>
-    <Sidebar />
+    <Nav />
   </div>
 </div>
 
