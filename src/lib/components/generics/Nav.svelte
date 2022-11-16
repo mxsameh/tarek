@@ -15,19 +15,19 @@
 		},
 		{
 			title: 'commissioned projects',
-			link: ''
+			link: '/projects/commissioned?id=1'
 		},
 		{
 			title: 'personal projects',
-			link: ''
+			link: '/projects/personal?id=2'
 		},
 		{
 			title: 'live music',
-			link: ''
+			link: '/projects/live-music?id=3'
 		},
 		{
 			title: 'portraits',
-			link: ''
+			link: '/portraits'
 		}
 	];
 
