@@ -1,6 +1,8 @@
 <script lang="ts">
 	import positionImages from "$lib/utils/gallery";
 	import { onMount } from "svelte";
+  import gsap from 'gsap';
+	import { attr } from "svelte/internal";
 
  	const imgs = [
 		'https://images.squarespace-cdn.com/content/v1/5b27a34be17ba335ea8d1983/1643663887733-CZ1PN3UOAQWTCQHOJ2SM/9.jpg',
@@ -18,11 +20,7 @@
   let galleryWidth : number;
   onMount(() =>
   {
-    const $gallery = document.querySelector('.gallery') as HTMLDivElement
     const $imgs = document.querySelectorAll('.gallery_img')
-
-    // galleryWidth = $gallery.clientWidth;
-
 
     positionImages($imgs, galleryWidth)
 
@@ -30,8 +28,43 @@
       positionImages($imgs, galleryWidth)
     })
 
+    let scrollAmount = 0;
+    const scrollImg = (y : number) =>
+    {
+      gsap.to($imgs,
+      {
+        y: `${y}`,
+        duration : (i) => { let d = setEase(i); return d}
+      })
+    }
+
+    // scroll
+    let y = 0 ;
+    let oldY = 0;
+    let direction
+    window.addEventListener('scroll',(e)=>{
+      let y = window.pageYOffset;
+      if(y > oldY) direction = -1 // scroll down
+      else direction = 1 // scroll up
+      oldY = y
+      let pos = direction * y
+      scrollImg(-y)
+
+
+    })
 
   })
+
+  const setEase = (i : number) : number =>
+  {
+    let firstColEase = 0.2
+    let secondColEase = 0.4
+    let thirdColEase = 0.6
+
+    if(i% 3 == 0) return firstColEase
+    if(i% 3 == 1) return secondColEase
+    return thirdColEase
+  }
 
   
 </script>
@@ -51,11 +84,18 @@
     width: 100%;
     height: 100%;
     scrollbar-width: none;
-    overflow: scroll;
+    overflow: hidden;
+    height: 120vh;
+    /* overflow: hidden; */
+    /* overflow: scroll; */
   }
   .gallery_wraper{
     width: 100%;
-    position: relative;
+    /* position: relative; */
+    height: max-content;
+    position: fixed;
+    /* position: fixed;
+    overflow: scroll; */
   }
   .gallery_img{
     position: absolute;
