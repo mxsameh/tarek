@@ -34,46 +34,70 @@
       gsap.to($imgs,
       {
         y: `${y}`,
-        duration : (i) => { let d = setEase(i); return d}
+        duration : (i) => { let d = setEase(i); return d},
+        ease:'power.out'
       })
     }
 
     // scroll
-    let y = 0 ;
-    let oldY = 0;
-    let direction
     window.addEventListener('scroll',(e)=>{
       let y = window.pageYOffset;
-      if(y > oldY) direction = -1 // scroll down
-      else direction = 1 // scroll up
-      oldY = y
-      let pos = direction * y
       scrollImg(-y)
-
-
     })
+
+    const calcWraperHeight = () =>
+    {
+      const imgs = document.querySelectorAll('.gallery_img')
+
+      let colsHeight : number[] = [];
+      let wrapHeight = 0;
+      let marginTop = 16
+      
+      for (let i = 0; i < colsNumber; i++) {
+        const colImages = document.querySelectorAll(`.is-col-${i}`)
+        let height = 0;
+        colImages.forEach( img =>
+        {
+          height += img.clientHeight
+        })
+
+        height += marginTop * (colImages.length - 1)
+        if(height > wrapHeight) wrapHeight = height
+      }
+
+      // let wrapHeight = Math.max(...colsHeight)
+
+      return wrapHeight
+    }
+
+    const h = calcWraperHeight()
+    gallery.style.height = `${h}px`
 
   })
 
   const setEase = (i : number) : number =>
   {
-    let firstColEase = 0.2
-    let secondColEase = 0.4
-    let thirdColEase = 0.6
+    let firstColEase = .8
+    let secondColEase = 0.6
+    let thirdColEase = 1
 
     if(i% 3 == 0) return firstColEase
     if(i% 3 == 1) return secondColEase
     return thirdColEase
   }
 
+
+  let gallery : HTMLDivElement;
+
+  let colsNumber = 3;
   
 </script>
 
-<div class="gallery">
+<div class="gallery" bind:this={gallery}>
   <div class="gallery_wraper" bind:clientWidth={galleryWidth}>
 
     {#each imgs as img, i}
-    <img data-key={i} class="gallery_img" src={img} alt={`${i}.jpg`}>
+    <img data-key={i} data-col={i%colsNumber} class={`gallery_img is-col-${i%colsNumber}`} src={img} alt={`${i}.jpg`}>
     {/each}
 
   </div>
@@ -82,10 +106,9 @@
 <style>
   .gallery{
     width: 100%;
-    height: 100%;
+    /* height: 100%; */
     scrollbar-width: none;
     overflow: hidden;
-    height: 120vh;
     /* overflow: hidden; */
     /* overflow: scroll; */
   }
