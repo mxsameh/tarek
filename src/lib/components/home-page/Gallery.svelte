@@ -1,10 +1,9 @@
 <script lang="ts">
-	import positionImages from "$lib/utils/gallery";
-	import { onMount } from "svelte";
-  import gsap from 'gsap';
-	import { attr } from "svelte/internal";
+	import positionImages, { getColsNumber, scrollImage } from '$lib/utils/gallery';
+	import { onMount } from 'svelte';
+	import gsap from 'gsap';
 
- 	const imgs = [
+	const imgs = [
 		'https://images.squarespace-cdn.com/content/v1/5b27a34be17ba335ea8d1983/1643663887733-CZ1PN3UOAQWTCQHOJ2SM/9.jpg',
 		'https://images.squarespace-cdn.com/content/v1/5b27a34be17ba335ea8d1983/1643664394222-2MTKQI0DU19AE5UXHRN2/24.jpg',
 		'https://images.squarespace-cdn.com/content/v1/5b27a34be17ba335ea8d1983/1643664204978-RTGJ7WZHJ2R0FL5UAP23/1.jpg',
@@ -14,116 +13,48 @@
 		'https://images.squarespace-cdn.com/content/v1/5b27a34be17ba335ea8d1983/1643663870557-D164CSQYB5QQ4PADRFMJ/TAREK104.JPG',
 		'https://images.squarespace-cdn.com/content/v1/5b27a34be17ba335ea8d1983/1643663837311-2MXTUK4K3U750HFDT9R4/AHMED-003.JPG',
 		'https://images.squarespace-cdn.com/content/v1/5b27a34be17ba335ea8d1983/1643664358381-QM0SKDYD9881JWQJDQP0/A.TAREK002-2.jpg'
-	]; 
+	];
 
+	let gallery: HTMLDivElement;
+	let colsNumber: number;
 
-  let galleryWidth : number;
-  onMount(() =>
-  {
-    const $imgs = document.querySelectorAll('.gallery_img')
+	onMount(() => {
+		const $imgs = document.querySelectorAll('.gallery_img');
+		colsNumber = getColsNumber(gallery.clientWidth);
 
-    positionImages($imgs, galleryWidth)
+		positionImages($imgs, gallery);
 
-    window.addEventListener('resize',(e)=>{
-      positionImages($imgs, galleryWidth)
-    })
+		// RESIZE EVENT LISTENER
+		window.addEventListener('resize', () => {
+			positionImages($imgs, gallery);
+		});
 
-    let scrollAmount = 0;
-    const scrollImg = (y : number) =>
-    {
-      gsap.to($imgs,
-      {
-        y: `${y}`,
-        duration : (i) => { let d = setEase(i); return d},
-        ease:'power.out'
-      })
-    }
-
-    // scroll
-    window.addEventListener('scroll',(e)=>{
-      let y = window.pageYOffset;
-      scrollImg(-y)
-    })
-
-    const calcWraperHeight = () =>
-    {
-      const imgs = document.querySelectorAll('.gallery_img')
-
-      let colsHeight : number[] = [];
-      let wrapHeight = 0;
-      let marginTop = 16
-      
-      for (let i = 0; i < colsNumber; i++) {
-        const colImages = document.querySelectorAll(`.is-col-${i}`)
-        let height = 0;
-        colImages.forEach( img =>
-        {
-          height += img.clientHeight
-        })
-
-        height += marginTop * (colImages.length - 1)
-        if(height > wrapHeight) wrapHeight = height
-      }
-
-      // let wrapHeight = Math.max(...colsHeight)
-
-      return wrapHeight
-    }
-
-    const h = calcWraperHeight()
-    gallery.style.height = `${h}px`
-
-  })
-
-  const setEase = (i : number) : number =>
-  {
-    let firstColEase = .8
-    let secondColEase = 0.6
-    let thirdColEase = 1
-
-    if(i% 3 == 0) return firstColEase
-    if(i% 3 == 1) return secondColEase
-    return thirdColEase
-  }
-
-
-  let gallery : HTMLDivElement;
-
-  let colsNumber = 3;
-  
+		// SCROLL EVENT LISTENER
+		window.addEventListener('scroll', (e) => {
+			scrollImage($imgs);
+		});
+	});
 </script>
 
 <div class="gallery" bind:this={gallery}>
-  <div class="gallery_wraper" bind:clientWidth={galleryWidth}>
-
-    {#each imgs as img, i}
-    <img data-key={i} data-col={i%colsNumber} class={`gallery_img is-col-${i%colsNumber}`} src={img} alt={`${i}.jpg`}>
-    {/each}
-
-  </div>
+	<div class="gallery_wraper">
+		{#each imgs as img, i}
+			<img data-key={i} data-col={i % colsNumber} class="gallery_img" src={img} alt={`${i}.jpg`} />
+		{/each}
+	</div>
 </div>
 
 <style>
-  .gallery{
-    width: 100%;
-    /* height: 100%; */
-    scrollbar-width: none;
-    overflow: hidden;
-    /* overflow: hidden; */
-    /* overflow: scroll; */
-  }
-  .gallery_wraper{
-    width: 100%;
-    /* position: relative; */
-    height: max-content;
-    position: fixed;
-    /* position: fixed;
-    overflow: scroll; */
-  }
-  .gallery_img{
-    position: absolute;
-    background-color: beige;
-  }
-
-  
+	.gallery {
+		width: 100%;
+		/* overflow: hidden; */
+	}
+	.gallery_wraper {
+		width: 100%;
+		position: fixed;
+	}
+	.gallery_img {
+		position: absolute;
+		background-color: beige;
+	}
 </style>

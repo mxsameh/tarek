@@ -53,25 +53,24 @@
 
 <style lang="scss">
 
-  .main{
-    width: 100%;
-    height: 100%;
-    padding: 24px 0;
-  }
 
   .page_content{
     padding: 0 24px;
-    height: 100vh;
-    overflow: hidden;
     display: flex;
     gap: 40px;
   }
+  .main{
+    width: 100%;
+    padding: 24px 0;
+  }
+
 	.sidebar {
-    width: fit-content;
-		height: 100%;
+		height: 100vh;
 		padding-top: var(--header-height);
 		flex-shrink: 0;
 		flex-grow: 0;
+    position: sticky;
+    top: 0;
 	}
 
   @media screen and (max-width: 767px)
