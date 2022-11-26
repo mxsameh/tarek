@@ -45,7 +45,7 @@ let colGap = 8;
 let rowGap = 16;
 
 const setColsNumber = (galleryWidth: number) => {
-	if (galleryWidth > 1240) {
+	if (galleryWidth > 1340) {
 		colsNumber = 4;
 	} else if (galleryWidth > 1024) {
 		colsNumber = 3;

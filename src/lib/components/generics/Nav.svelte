@@ -130,7 +130,7 @@
 			width: 100%;
 			align-items: center;
 			padding: 24px 0;
-			padding-top: calc(var(--header-height) + 24px);
+			padding-top: calc(var(--header-height-sm) + 32px);
 		}
 		.projects-wraper{
 			height: auto;
