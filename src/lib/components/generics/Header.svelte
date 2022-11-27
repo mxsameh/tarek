@@ -20,7 +20,8 @@
 		text-transform: uppercase;
 		font-size: 40px;
     line-height: 38px;
-    font-family: 'Bungee','serif';
+    font-family: 'Bungee', Arial, Helvetica, sans-serif;
+    font-weight: bolder;
     text-align: center;
     color: #333;
 	}

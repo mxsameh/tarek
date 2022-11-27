@@ -10,23 +10,20 @@
 	let imageCover: HTMLDivElement;
 	let albumImage: HTMLImageElement;
 
-
 	const handleScroll = (e: any) => {
 		if (!scroll) return;
 
 		scroll = false;
-    chagneAlbum(albumArtist,albumName, imageCover, $albums, e.deltaY)
+		chagneAlbum(albumArtist, albumName, albumImage, imageCover, $albums, e.deltaY);
 
 		setTimeout(() => {
 			scroll = true;
 		}, 1000);
-
 	};
 
 	onMount(() => {
 		window.addEventListener('wheel', handleScroll);
 	});
-
 </script>
 
 <div class="container">
@@ -57,6 +54,8 @@
 	.album_text-wraper {
 		writing-mode: sideways-lr;
 		overflow: hidden;
+		flex-shrink: 0;
+		flex-grow: 0;
 		&:last-child {
 			writing-mode: sideways-rl;
 		}
@@ -77,9 +76,12 @@
 		position: relative;
 		overflow: hidden;
 		aspect-ratio: 1;
+		width: 40vw;
+		max-width: 600px;
 	}
 	.image {
 		width: 100%;
+		object-fit: cover;
 	}
 	.image-cover {
 		position: absolute;
@@ -94,7 +96,10 @@
 		.album {
 			flex-direction: column;
 			justify-content: end;
-			padding: calc( var(--header-height-sm) + 40px) 16px 24px;
+			padding: calc(var(--header-height-sm) + 40px) 16px 24px;
+		}
+		.album_image{
+			width: auto
 		}
 		.album_text-wraper {
 			writing-mode: unset;

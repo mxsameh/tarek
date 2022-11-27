@@ -1,14 +1,16 @@
 <script lang="ts">
 	import Header from "$lib/components/generics/Header.svelte";
-	import Menu from "$lib/components/generics/Menu.svelte";
 	import Gallery from "$lib/components/home-page/Gallery.svelte";
   import Overlay from "$lib/components/home-page/Overlay.svelte";
 	import Nav from "$lib/components/generics/Nav.svelte";
 	import getBreakpoint from "$lib/utils/breakpoint";
 	import { onMount } from "svelte";
+	import viralPhotos from "$lib/stores/viral-photos";
+	import Menu from "$lib/components/home-page/Menu.svelte";
 
   let pageWraper : HTMLDivElement;
   let isMobileBp = false;
+
 
   onMount(()=>{
     let breakpoint = getBreakpoint();
@@ -41,18 +43,17 @@
 
     <!-- GALLERY -->
     <main class="main">
-      <Gallery />
+      <Gallery imgs={$viralPhotos} />
     </main>
 
   </div>
 
   {#if isMobileBp}
-    <Menu />
+  <Menu />
   {/if}
 </div>
 
 <style lang="scss">
-
 
   .page_content{
     padding: 0 24px;

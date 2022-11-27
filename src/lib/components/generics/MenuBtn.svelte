@@ -27,13 +27,13 @@
     menuBtnTl
     .to('.menu_line:first-child',
     {
-      duration: .5,
+      duration: .2,
       ease: "power4.out",
       y : 12,
     },0)
     .to('.menu_line:last-child',
     {
-      duration: .5,
+      duration: .2,
       ease: "power4.out",
       y: -12
     },0)
@@ -42,15 +42,15 @@
       opacity : 0
     })
     .to('.menu_line:first-child',{
-      duration : 1,
+      duration : .5,
       ease: "back.out(3)",
       rotate: 40
-    },1)
+    },.5)
     .to('.menu_line:last-child',{
-      duration : 1,
+      duration : .5,
       ease: "back.out(3)",
       rotate: -40
-    },1)
+    },.5)
 
   })
 
@@ -69,11 +69,6 @@
 <style lang="scss">
 
   .menu_btn{
-    z-index: 10;
-    position: fixed;
-    bottom: 8px;
-    left: 50%;
-    transform: translateX(-50%);
     width: 80px;
     aspect-ratio: 1/1;
     background-color: #ffa8a8;
@@ -83,8 +78,7 @@
     justify-content: center;
 
     &:active{
-      transform: translateX(-50%) scale(.9);
-      // scale: .9;
+      transform: scale(.9);
     }
   } 
   .menu_icon{

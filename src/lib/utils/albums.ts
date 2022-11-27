@@ -17,14 +17,14 @@ const getScrollDirection = ( y : number ) =>
 const changeIndex = () =>
 {
 		let index = direction > 0 ? i + 1 : i - 1;
-		index = gsap.utils.wrap(0, 4, index);
-
+		index = gsap.utils.wrap(0, 6, index);
     return index
 }
 
 // CHANGE ALBUM COVER
-const chagneAlbum = ( albumArtist : HTMLElement, albumName : HTMLElement, imageCover : HTMLElement, albums : any, y : number) =>
+const chagneAlbum = ( albumArtist : HTMLElement, albumName : HTMLElement, albumImage : HTMLImageElement, imageCover : HTMLElement, albums : any, y : number) =>
 {
+  if(!albumArtist) return
   i = changeIndex()
   direction = getScrollDirection(y)
 
@@ -56,7 +56,7 @@ const chagneAlbum = ( albumArtist : HTMLElement, albumName : HTMLElement, imageC
         x: 0,
         y: 0,
         onComplete: function () {
-          console.log('changeImage');
+          albumImage.src = albums[i].image
         }
       }
     )

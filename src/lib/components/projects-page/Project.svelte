@@ -18,7 +18,7 @@
 <style lang="scss">
   .project{
     width: 100%;
-    padding: 2vw 0;
+    padding: 2vmax 0;
     display: flex;
     justify-content: center;
     position: absolute;

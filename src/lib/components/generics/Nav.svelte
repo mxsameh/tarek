@@ -64,7 +64,7 @@
 	.nav{
 		display: flex;
 		flex-direction: column;
-    font-family: 'Roboto';
+    font-family: 'Roboto', Arial, Helvetica, sans-serif;
 		height: 100%;
 	}
 	.projects-wraper{
