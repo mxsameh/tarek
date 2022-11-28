@@ -5,13 +5,12 @@
 	import HorizonalGallery from "$lib/components/shoot-page/HorizonalGallery.svelte";
 	import Sidebar from "$lib/components/shoot-page/Sidebar.svelte";
 	import shoots from "$lib/stores/shoots";
-	import viralPhotos from "$lib/stores/viral-photos";
 	import { onMount } from "svelte";
 
   let shootId = $page.params.shootId as string
   let id = parseInt(shootId) - 1
   let shoot = $shoots[id]
-  const images = $viralPhotos
+  const images = shoot.imgs
   let Page : HTMLDivElement;
   let pageWidth : number;
   let smScreen = false;

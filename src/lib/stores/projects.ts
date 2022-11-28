@@ -50,28 +50,33 @@ const projectsData = [
 				img: 'https://images.squarespace-cdn.com/content/v1/5b27a34be17ba335ea8d1983/1632760271831-S7REQXX9F9RVZYWA5HDH/TAREK451.jpg?format=500w'
 			},
 			{
-				name: 'One & Four Studio AW20',
-				link: '/shoots/9',
-				img: ''
+				name : 'BRAND NAME BLANK',
+				link : '/shoot/9',
+				img : ''
 			},
 			{
-				name: 'Rebel Cairo',
+				name: 'One & Four Studio AW20',
 				link: '/shoots/10',
 				img: ''
 			},
 			{
-				name: 'Pier 88 x LUCID',
+				name: 'Rebel Cairo',
 				link: '/shoots/11',
 				img: ''
 			},
 			{
-				name: 'Suzanne SS19',
+				name: 'Pier 88 x LUCID',
 				link: '/shoots/12',
 				img: ''
 			},
 			{
-				name: 'UNITY',
+				name: 'Suzanne SS19',
 				link: '/shoots/13',
+				img: ''
+			},
+			{
+				name: 'UNITY',
+				link: '/shoots/14',
 				img: ''
 			}
 		]
@@ -82,37 +87,37 @@ const projectsData = [
 		shoots: [
 			{
 				name: 'Gas Stations',
-				link: '/shoots/14',
-				img: ''
-			},
-			{
-				name: 'CAIRO',
 				link: '/shoots/15',
 				img: ''
 			},
 			{
-				name: 'Alexandria',
+				name: 'CAIRO',
 				link: '/shoots/16',
 				img: ''
 			},
 			{
-				name: '2 AM with Marwan Pablo',
+				name: 'Alexandria',
 				link: '/shoots/17',
 				img: ''
 			},
 			{
-				name: 'OVERSIZED I',
+				name: '2 AM with Marwan Pablo',
 				link: '/shoots/18',
 				img: ''
 			},
 			{
-				name: 'OVERSIZED II',
+				name: 'OVERSIZED I',
 				link: '/shoots/19',
 				img: ''
 			},
 			{
-				name: 'OVERSIZED III',
+				name: 'OVERSIZED II',
 				link: '/shoots/20',
+				img: ''
+			},
+			{
+				name: 'OVERSIZED III',
+				link: '/shoots/21',
 				img: ''
 			}
 		]
@@ -123,27 +128,27 @@ const projectsData = [
 		shoots: [
 			{
 				name: 'Marwan Pablo',
-				link: '/shoots/21',
-				img: ''
-			},
-			{
-				name: 'Redbull SoundClash 19',
 				link: '/shoots/22',
 				img: ''
 			},
 			{
-				name: 'Disco Misr',
+				name: 'Redbull SoundClash 19',
 				link: '/shoots/23',
 				img: ''
 			},
 			{
-				name: 'Sandbox Festival 19',
+				name: 'Disco Misr',
 				link: '/shoots/24',
 				img: ''
 			},
 			{
-				name: 'General',
+				name: 'Sandbox Festival 19',
 				link: '/shoots/25',
+				img: ''
+			},
+			{
+				name: 'General',
+				link: '/shoots/26',
 				img: ''
 			}
 		]
