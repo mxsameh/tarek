@@ -71,7 +71,7 @@
   .menu_btn{
     width: 80px;
     aspect-ratio: 1/1;
-    background-color: #ffa8a8;
+    background-color: #909090;
     border-radius: 50%;
     display: flex;
     align-items: center;

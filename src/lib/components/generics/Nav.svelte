@@ -7,7 +7,7 @@
 		},
 		{
 			title: 'exhibitions',
-			link: ''
+			link: '/exhibitions'
 		},
 		{
 			title: 'album covers',

@@ -11,6 +11,9 @@
   let pageWraper : HTMLDivElement;
   let isMobileBp = false;
 
+  let images = $viralPhotos.imgs
+  let dimens = $viralPhotos.dimens
+
 
   onMount(()=>{
     let breakpoint = getBreakpoint();
@@ -43,7 +46,7 @@
 
     <!-- GALLERY -->
     <main class="main">
-      <Gallery imgs={$viralPhotos} />
+      <Gallery imgs={images} {dimens} />
     </main>
 
   </div>

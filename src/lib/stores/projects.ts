@@ -51,7 +51,7 @@ const projectsData = [
 			},
 			{
 				name : 'BRAND NAME BLANK',
-				link : '/shoot/9',
+				link : '/shoots/9',
 				img : ''
 			},
 			{
@@ -154,6 +154,8 @@ const projectsData = [
 		]
 	}
 ];
+
+
 
 const projects = writable(projectsData);
 

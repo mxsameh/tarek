@@ -11,11 +11,12 @@
   let id = parseInt(shootId) - 1
   let shoot = $shoots[id]
   const images = shoot.imgs
+  const dimens = shoot.dimens
   let Page : HTMLDivElement;
   let pageWidth : number;
   let smScreen = false;
 
-  const checkScreen = () =>
+  const handleResize = () =>
   {
     let width = pageWidth
     if(width < 768 ) smScreen = true
@@ -24,9 +25,9 @@
 
   onMount(() =>
   {
-    checkScreen()
+    handleResize()
     Page.style.opacity = '1'
-    window.addEventListener('resize',checkScreen)
+    window.addEventListener('resize',handleResize)
   })
 
 </script>
@@ -39,7 +40,7 @@
     {#if smScreen }
     <HorizonalGallery {images}/>
     {:else}
-    <Gallery imgs={images}/>
+    <Gallery imgs={images} {dimens} />
     {/if}
   </main>
 </div>

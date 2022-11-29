@@ -1,5 +1,4 @@
 <script lang="ts">
-	import viralPhotos from "$lib/stores/viral-photos";
 	import { onMount } from "svelte";
 
 

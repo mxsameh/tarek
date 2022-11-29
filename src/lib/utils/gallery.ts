@@ -102,8 +102,9 @@ const getImageWidth = (i: number) => {
 const getImageHeight = (img : HTMLImageElement) =>
 {
 	let imageKey = parseInt(img.dataset.key as string)
-	let imageNaturalHeight = img.naturalHeight;
-	let imageNaturalWidth = img.naturalWidth;
+	let imageDimen = img.dataset.dimen?.split('x') as string[]
+	let imageNaturalWidth = parseInt(imageDimen[0])
+	let imageNaturalHeight = parseInt(imageDimen[1])
 	let imageRenderWidth = getImageWidth(imageKey);
 
 	const height = imageRenderWidth * imageNaturalHeight / imageNaturalWidth
@@ -128,10 +129,7 @@ const getImageTop = (i: number, imgs: NodeListOf<HTMLImageElement>) => {
 
 	while (n - colsNumber >= 0) {
 		n -= colsNumber;
-
-		if (imgs[n].naturalHeight) {
-			top += getImageHeight(imgs[n]) + rowGap;
-		}
+		top += getImageHeight(imgs[n]) + rowGap;
 	}
 
 	return top;
@@ -139,7 +137,7 @@ const getImageTop = (i: number, imgs: NodeListOf<HTMLImageElement>) => {
 
 const getImageEase = (i: number): number => {
 	let col = i % colsNumber;
-	let colEase = 0.6 + 0.2 * col;
+	let colEase = 0.8 + 0.3 * col;
 
 	return colEase;
 };
@@ -149,7 +147,7 @@ const scrollImages = (imgs: NodeListOf<Element>) => {
 	gsap.to(imgs, {
 		y: `-${y}`,
 		duration: (i) => getImageEase(i),
-		ease: 'power.in'
+		ease: 'ease.in'
 	});
 };
 
