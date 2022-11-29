@@ -1,16 +1,13 @@
 <script lang="ts">
-	import { browser } from '$app/environment';
-	import positionImages, { getColsNumber, scrollImage } from '$lib/utils/gallery';
+	import positionImages, { scrollImages } from '$lib/utils/gallery';
 	import { onDestroy, onMount } from 'svelte';
 
 	export let imgs : any;
 
 	let gallery: HTMLDivElement;
-	let colsNumber: number;
 
 	onMount(() => {
-		const $imgs = document.querySelectorAll('.gallery_img');
-		colsNumber = getColsNumber(gallery.clientWidth);
+		const $imgs = document.querySelectorAll('.gallery_img') as NodeListOf<HTMLImageElement>;
 
 		positionImages($imgs, gallery);
 
@@ -20,25 +17,20 @@
 		});
 
 		// SCROLL EVENT LISTENER
-		window.addEventListener('scroll', (e) => {
-			scrollImage($imgs);
+		window.addEventListener('scroll', () => {
+			scrollImages($imgs);
 		});
 	});
 
-	// onDestroy(()=>{
-	// 	console.log( 'destroyed' );
-	// 	if(browser)
-	// 	{
-	// 		// window.rom
-	// 	}
-	// })
+	let active = false
+
 
 </script>
 
 <div class="gallery" bind:this={gallery}>
 	<div class="gallery_wraper">
 		{#each imgs as img, i}
-			<img data-key={i} data-col={i % colsNumber} class="gallery_img" src={img} alt={`${i}.jpg`} />
+			<img data-key={i} class="gallery_img" src={img} alt={`${i}.jpg`} />
 		{/each}
 	</div>
 </div>
@@ -46,6 +38,7 @@
 <style>
 	.gallery {
 		width: 100%;
+		position: relative;
 	}
 	.gallery_wraper {
 		width: 100%;
@@ -53,6 +46,6 @@
 	}
 	.gallery_img {
 		position: absolute;
-		background-color: beige;
+		background-color: hotpink;
 	}
 </style>

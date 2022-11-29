@@ -3,31 +3,12 @@ import gsap from 'gsap';
 /**
  *  GALLERY
  */
-const getColImages = (imgs: NodeListOf<Element>, col: number): Element[] => {
-	let colImages: Element[] = [];
-	imgs.forEach((img, i) => {
-		if (i % colsNumber == col) colImages.push(img);
-	});
 
-	return colImages;
-};
-
-const getColHeight = (colImages: Element[]): number => {
-	let colHeight = 0;
-
-	colImages.forEach((img) => {
-		colHeight += img.clientHeight;
-	});
-
-	colHeight += rowGap * (colImages.length - 1);
-
-	return colHeight;
-};
-
-const calcGalleryHeight = (imgs: NodeListOf<Element>): number => {
+const calcGalleryHeight = (imgs: NodeListOf<HTMLImageElement>): number => {
 	let galleryHeight = 0;
 
-	for (let i = 0; i < 1; i++) {
+	// Get each column height and choose the taller
+	for (let i = 0; i < colsNumber; i++) {
 		let colImages = getColImages(imgs, i);
 		let colHeight = getColHeight(colImages);
 
@@ -41,6 +22,7 @@ const calcGalleryHeight = (imgs: NodeListOf<Element>): number => {
  *  COLUMNS
  */
 let colsNumber: number;
+let colsWidth : number[];
 let colGap = 8;
 let rowGap = 16;
 
@@ -63,11 +45,12 @@ const getColsNumber = (gallerWidth: number) => {
 	return colsNumber;
 };
 
-const getColsWidth = (galleryWidth: number, colsNumber: number) => {
-	let colsWidth = [];
+const getColsWidth = (galleryWidth: number) => {
+	colsWidth = [];
 	galleryWidth = galleryWidth - (colGap * colsNumber - 1);
 	let colWidth = Math.floor(galleryWidth / colsNumber);
 
+	// If gallery width can be divided equally on the number of columns
 	if (galleryWidth % colsNumber != 0) {
 		for (let i = 1; i < colsNumber; i++) {
 			colsWidth.push(colWidth);
@@ -83,38 +66,71 @@ const getColsWidth = (galleryWidth: number, colsNumber: number) => {
 	return colsWidth;
 };
 
+const getColImages = (imgs: NodeListOf<HTMLImageElement>, col: number): HTMLImageElement[] => {
+	let colImages: HTMLImageElement[] = [];
+	imgs.forEach((img, i) => {
+		if (i % colsNumber == col) colImages.push(img);
+	});
+
+	return colImages;
+};
+
+const getColHeight = (colImages: HTMLImageElement[]): number => {
+	let colHeight = 0;
+
+	colImages.forEach((img) => {
+		let imageHeight = getImageHeight(img)
+		colHeight += imageHeight;
+	});
+
+	colHeight += rowGap * (colImages.length - 1);
+
+	return colHeight;
+};
+
 /**
  *  IMAGES
  */
 
-const getImageWidth = (i: number, colsWidth: number[], colsNumber: number) => {
+const getImageWidth = (i: number) => {
 	const colIndex = i % colsNumber;
 	const width = colsWidth[colIndex];
 
 	return width;
 };
 
-const getImageLeft = (i: number, colsWidth: number[], colsNumber: number) => {
-	let left = 0;
-	let index = i % colsNumber;
+const getImageHeight = (img : HTMLImageElement) =>
+{
+	let imageKey = parseInt(img.dataset.key as string)
+	let imageNaturalHeight = img.naturalHeight;
+	let imageNaturalWidth = img.naturalWidth;
+	let imageRenderWidth = getImageWidth(imageKey);
 
-	while (index != 0) {
-		index--;
-		left += colsWidth[index] + colGap;
+	const height = imageRenderWidth * imageNaturalHeight / imageNaturalWidth
+	return height
+}
+
+const getImageLeft = (i: number) => {
+	let left = 0;
+	let colIndex = i % colsNumber;
+
+	while (colIndex != 0) {
+		colIndex--;
+		left += colsWidth[colIndex] + colGap;
 	}
 
 	return left;
 };
 
-const getImageTop = (i: number, imgs: NodeListOf<Element>, colsNumber: number) => {
+const getImageTop = (i: number, imgs: NodeListOf<HTMLImageElement>) => {
 	let top = 0;
 	let n = i;
 
 	while (n - colsNumber >= 0) {
 		n -= colsNumber;
 
-		if (imgs[n].clientHeight) {
-			top += imgs[n].clientHeight + rowGap;
+		if (imgs[n].naturalHeight) {
+			top += getImageHeight(imgs[n]) + rowGap;
 		}
 	}
 
@@ -128,24 +144,24 @@ const getImageEase = (i: number): number => {
 	return colEase;
 };
 
-const scrollImage = (imgs: NodeListOf<Element>) => {
+const scrollImages = (imgs: NodeListOf<Element>) => {
 	let y = window.pageYOffset;
 	gsap.to(imgs, {
 		y: `-${y}`,
 		duration: (i) => getImageEase(i),
-		ease: 'power.out'
+		ease: 'power.in'
 	});
 };
 
-const positionImages = (imgs: NodeListOf<Element>, gallery: HTMLDivElement) => {
+const positionImages = (imgs: NodeListOf<HTMLImageElement>, gallery: HTMLDivElement) => {
 	let galleryWidth = gallery.clientWidth;
-	let colsNumber = setColsNumber(galleryWidth);
-	let colsWidth = getColsWidth(galleryWidth, colsNumber);
+	colsNumber = setColsNumber(galleryWidth);
+	colsWidth = getColsWidth(galleryWidth);
 
 	imgs.forEach((img, i) => {
-		let width = getImageWidth(i, colsWidth, colsNumber);
-		let left = getImageLeft(i, colsWidth, colsNumber);
-		let top = getImageTop(i, imgs, colsNumber);
+		let width = getImageWidth(i);
+		let left = getImageLeft(i);
+		let top = getImageTop(i, imgs);
 
 		gsap.set(img, { width, left, top });
 	});
@@ -154,4 +170,4 @@ const positionImages = (imgs: NodeListOf<Element>, gallery: HTMLDivElement) => {
 	gallery.style.height = `${galleryHeight}px`;
 };
 
-export { positionImages as default, getColsNumber, getImageEase, scrollImage };
+export { positionImages as default, scrollImages };
