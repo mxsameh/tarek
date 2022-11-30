@@ -136,6 +136,9 @@ const getImageTop = (i: number, imgs: NodeListOf<HTMLImageElement>) => {
 };
 
 const getImageEase = (i: number): number => {
+	if(colsNumber == 1){
+		return 0.2
+	}
 	let col = i % colsNumber;
 	let colEase = 0.8 + 0.3 * col;
 
@@ -147,7 +150,7 @@ const scrollImages = (imgs: NodeListOf<Element>) => {
 	gsap.to(imgs, {
 		y: `-${y}`,
 		duration: (i) => getImageEase(i),
-		ease: 'ease.in'
+		ease: colsNumber == 1 ? 'linear' : 'ease.in'
 	});
 };
 

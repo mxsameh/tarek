@@ -28,7 +28,6 @@
     font-size: clamp(28px,7vw,120px);
     font-weight: bold;
     user-select: none;
-    font-family:  'Ubuntu';
     white-space: nowrap;
   }
 

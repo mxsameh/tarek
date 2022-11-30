@@ -331,24 +331,32 @@ const shootsData = [
 		id: 9,
 		name: 'BRAND NAME BLANK',
 		dimens: [
-			'2500x3364',
-			'2500x3379',
-			'2500x3371',
-			'2500x3371',
-			'2500x3364',
-			'2500x3371',
-			'2500x3371',
-			'2500x3726'
+			'2088x2992',
+			'2500x3363',
+			'2500x1678',
+			'2500x1998',
+			'2500x1576',
+			'2500x3363',
+			'2096x3328',
+			'2096x3320',
+			'2088x3328',
+			'2088x3328',
+			'2500x3128',
+			'2072x3232'
 		],
 		imgs: [
-			'https://images.squarespace-cdn.com/content/v1/5b27a34be17ba335ea8d1983/1632760338151-8TES5WB8GEG8VZ5AP3SU/TAREK452.jpg',
-			'https://images.squarespace-cdn.com/content/v1/5b27a34be17ba335ea8d1983/1632760271831-S7REQXX9F9RVZYWA5HDH/TAREK451.jpg',
-			'https://images.squarespace-cdn.com/content/v1/5b27a34be17ba335ea8d1983/1632760267024-LMSQXMY2T5BFCIHERB10/TAREK444.jpg',
-			'https://images.squarespace-cdn.com/content/v1/5b27a34be17ba335ea8d1983/1632760437097-ZMFL70DLGDODP66YX74T/TAREK469.jpg',
-			'https://images.squarespace-cdn.com/content/v1/5b27a34be17ba335ea8d1983/1632760340327-2HYJUM05HES65M2CW52A/TAREK459.jpg',
-			'https://images.squarespace-cdn.com/content/v1/5b27a34be17ba335ea8d1983/1632760395100-8MKH4KDBA348TSTREFM6/TAREK436.jpg',
-			'https://images.squarespace-cdn.com/content/v1/5b27a34be17ba335ea8d1983/1632760437443-ZGON3Y9FPATKXAHKGBDW/TAREK464.jpg',
-			'https://images.squarespace-cdn.com/content/v1/5b27a34be17ba335ea8d1983/1632760464309-5307E0V0C765BWZY4DG2/TAREK447.jpg'
+			'https://images.squarespace-cdn.com/content/v1/5b27a34be17ba335ea8d1983/1616569106397-HQBH4K4LA8VZEJXZ45MK/TAREK12-2.jpg',
+			'https://images.squarespace-cdn.com/content/v1/5b27a34be17ba335ea8d1983/1616569234119-W1RDW31ST6XVHA8RF1QX/TAREK10.jpg',
+			'https://images.squarespace-cdn.com/content/v1/5b27a34be17ba335ea8d1983/1616569114160-JY61ZFY1GWXFQKCLJ2BQ/TAREK09.jpg',
+			'https://images.squarespace-cdn.com/content/v1/5b27a34be17ba335ea8d1983/1616569066276-6DS4JYE58JVV5ZF67NLC/TAREK06-3-3.jpg',
+			'https://images.squarespace-cdn.com/content/v1/5b27a34be17ba335ea8d1983/1616569085831-6H0R68CGZJOXEQZR9UT9/TAREK09-2.jpg',
+			'https://images.squarespace-cdn.com/content/v1/5b27a34be17ba335ea8d1983/1616569207523-S7DX8GQ3EXE3HGUW9NB4/TAREK02.jpg',
+			'https://images.squarespace-cdn.com/content/v1/5b27a34be17ba335ea8d1983/1616569135705-IQ7DQ96QDU0NX9T7KSNJ/TAREK40.jpg',
+			'https://images.squarespace-cdn.com/content/v1/5b27a34be17ba335ea8d1983/1616569122651-KYE674L8LCBO6AFFAF92/TAREK39.jpg',
+			'https://images.squarespace-cdn.com/content/v1/5b27a34be17ba335ea8d1983/1616569158084-MO9ASDNE3Z1YIGLDA3KK/TAREK75.jpg',
+			'https://images.squarespace-cdn.com/content/v1/5b27a34be17ba335ea8d1983/1616569180308-AH7G0EHA97NH6L5L1KXW/TAREK80.JPG',
+			'https://images.squarespace-cdn.com/content/v1/5b27a34be17ba335ea8d1983/1616569209160-337EIB76YD1RIFUGT4XK/TAREK08-3-2.jpg',
+			'https://images.squarespace-cdn.com/content/v1/5b27a34be17ba335ea8d1983/1616569136403-LE795ZU59XSTYRZXR2HJ/TAREK54.jpg'
 		]
 	},
 	{

@@ -62,7 +62,6 @@
 	}
 	.album_text {
 		font-size: 9vh;
-		font-family: Arial, Helvetica, sans-serif;
 		text-transform: uppercase;
 		font-weight: bolder;
 		overflow: hidden;

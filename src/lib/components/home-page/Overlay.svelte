@@ -107,7 +107,6 @@
 	.title {
 		font-size: clamp(40px, 8vw, 120px);
 		text-transform: uppercase;
-		font-family: 'Bungee';
 		color: gray;
 		white-space: nowrap;
 		overflow: hidden;

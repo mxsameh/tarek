@@ -120,7 +120,6 @@
   .title{
     font-size: 6vw;
     text-transform: uppercase;
-    font-family: 'ubuntu';
     padding-top: 24px;
     overflow: hidden;
     color: rgb(71, 71, 71);

@@ -1,44 +1,17 @@
 <script lang="ts">
-	import Gallery from '$lib/components/exhibition-page/Gallery.svelte';
+	import Gallery from '$lib/components/exhibition-page/HorizontalGallery.svelte';
 	import Header from '$lib/components/generics/Header.svelte';
+	import exhibitions from '$lib/stores/exhibitions';
 
-	const imgs = [
-		[
-			'mp.jpg',
-			'mp.jpg',
-			'mp.jpg',
-			'mp.jpg',
-			'wegz.jpg',
-			'mp.jpg',
-			'wegz.jpg',
-			'mp.jpg',
-			'wegz.jpg',
-			'mm.jpg',
-			'mm.jpg',
-			'mm.jpg',
-			'mp.jpg',
-			'wegz.jpg'
-		],
-		[
-			'mm.jpg',
-			'mm.jpg',
-			'mm.jpg',
-			'mp.jpg',
-			'wegz.jpg',
-			'mp.jpg',
-			'wegz.jpg',
-			'mp.jpg',
-			'wegz.jpg',
-			'mp.jpg',
-			'wegz.jpg'
-		]
-	];
+	const graduationImages = $exhibitions.graduationImages
+	const graduationPressImages = $exhibitions.graduationPressImages
   
-  let galleryImages = imgs[0]
+  let galleryImages = graduationImages
+
   const handleTabClick = (e : any) =>
   {
-    let index = e.target.dataset.key;
-    galleryImages = imgs[index]
+    let name = e.target.dataset.name;
+    galleryImages = name === 'graduation' ? graduationImages : graduationPressImages
   }
 </script>
 
@@ -46,11 +19,11 @@
 	<Header />
 	<h1 class="title">exhibitions</h1>
 	<nav class="nav">
-		<button data-key=0 class="nav_btn" on:click={handleTabClick}>GRADUATION // 2021</button>
-		<button data-key=1 class="nav_btn" on:click={handleTabClick}>GRADUATION Press Photos</button>
+		<button data-name='graduation' class="nav_btn" on:click={handleTabClick}>GRADUATION // 2021</button>
+		<button data-name='graduation press' class="nav_btn" on:click={handleTabClick}>GRADUATION Press Photos</button>
 	</nav>
-	<main>
-		<Gallery imgs={galleryImages} />
+	<main class="main">
+		<Gallery images={galleryImages} />
 	</main>
 </div>
 
@@ -58,15 +31,13 @@
 	.page {
 		width: 100%;
 		min-height: 100vh;
-		padding: var(--header-height-lg) 24px 0;
-		font-family: Arial, Helvetica, sans-serif;
+		padding-top: var(--header-height-lg)
 	}
 	.title {
 		text-align: center;
 		text-transform: uppercase;
 		font-size: 8vw;
 		letter-spacing: 0.2vw;
-		margin-top: 40px;
 	}
 	.nav {
 		margin-top: 40px;
@@ -87,15 +58,22 @@
 			}
 		}
 	}
-	@media screen and (max-width: 1023px) {
+	.main{
+		margin: 32px 0 16px;
+	}
+
+	@media screen and (max-width: 767px) {
 		.page {
-			padding: var(--header-height-sm) 16px 0;
+			padding-top: var(--header-height-sm);
+		}
+		.title{
+			margin-top: 40px;
 		}
 		.nav {
 			gap: 24px;
-		}
-		.btn {
-			font-size: 16px;
+			&_btn {
+				font-size: 18px;
+			}
 		}
 	}
 </style>

@@ -57,7 +57,6 @@
     height: 100vh;
     display: grid;
     place-items: center;
-    font-family: Arial, Helvetica, sans-serif;
     position: sticky;
     top: 0;
     left: 0;
@@ -66,7 +65,7 @@
   .shoot_name{
     text-align: center;
     font-weight: bolder;
-    font-size: 2.5vw;
+    font-size: clamp(40px,2.5vw,3vw)
   }
   .menu-btn{
     position: fixed;
@@ -93,7 +92,7 @@
       flex-basis: auto;
     }
     .shoot_name{
-      font-size:7vw;
+      font-size:clamp(30px,7vw,7vw);
     }
     .menu{
       padding-bottom: 0;

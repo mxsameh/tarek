@@ -64,7 +64,6 @@
 	.nav{
 		display: flex;
 		flex-direction: column;
-    font-family: 'Roboto', Arial, Helvetica, sans-serif;
 		height: 100%;
 	}
 	.projects-wraper{
@@ -81,7 +80,7 @@
 	.project {
 		text-transform: capitalize;
 		font-size: 20px;
-		font-weight: 500;
+		font-weight: 600;
 		width: fit-content;
 	}
 	.inactive {

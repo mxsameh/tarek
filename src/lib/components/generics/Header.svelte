@@ -8,8 +8,7 @@
 
 <style lang="scss">
   .header{
-    width: 100%;
-    padding: 24px 24px 0;
+    padding: 24px 0 0 24px;
     position: fixed;
     z-index: 100;
     top: 0;
@@ -19,9 +18,8 @@
 	.logo {
 		text-transform: uppercase;
 		font-size: 40px;
-    line-height: 38px;
-    font-family: 'Bungee', Arial, Helvetica, sans-serif;
-    font-weight: bolder;
+    line-height: 34px;
+    font-weight: 900;
     text-align: center;
     color: #333;
 	}
@@ -29,7 +27,10 @@
   @media screen and (max-width : 767px)
   {
     .header{
+      padding: 0;
       padding-top: 16px;
+      left: 50%;
+      transform: translateX(-50%);
     }
     .logo{
       text-align: center;

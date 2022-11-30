@@ -2,7 +2,7 @@
 	import { page } from "$app/stores";
 	import Header from "$lib/components/generics/Header.svelte";
 	import Gallery from "$lib/components/home-page/Gallery.svelte";
-	import HorizonalGallery from "$lib/components/shoot-page/HorizonalGallery.svelte";
+	import HorizonalGallery from "$lib/components/exhibition-page/HorizontalGallery.svelte";
 	import Sidebar from "$lib/components/shoot-page/Sidebar.svelte";
 	import shoots from "$lib/stores/shoots";
 	import { onMount } from "svelte";
