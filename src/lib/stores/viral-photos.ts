@@ -13,15 +13,15 @@ const data = {
 		'2241x3000'
 	],
 	imgs: [
-		'/viral-photos/9.jpg',
-		'/viral-photos/24.jpg',
-		'/viral-photos/1.jpg',
-		'/viral-photos/TAREK321.jpg',
-		'/viral-photos/A.TAREK001.jpg',
-		'/viral-photos/2.jpg',
-		'/viral-photos/TAREK104.JPG',
-		'/viral-photos/AHMED-003.JPG',
-		'/viral-photos/A.TAREK002-2.jpg'
+		'/viral-photos/1.webp',
+		'/viral-photos/2.webp',
+		'/viral-photos/3.webp',
+		'/viral-photos/4.webp',
+		'/viral-photos/5.webp',
+		'/viral-photos/6.webp',
+		'/viral-photos/7.webp',
+		'/viral-photos/8.webp',
+		'/viral-photos/9.webp'
 	]
 };
 

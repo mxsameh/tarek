@@ -5,37 +5,37 @@ const data = [
 		id: 1,
 		name: 'free',
 		artist: 'marwan pablo',
-		image: './albums-covers/0-FREE+7.png'
+		image: './albums-covers/1.webp'
 	},
 	{
 		id: 2,
 		name: 'florida',
 		artist: 'marwan moussa',
-		image: './albums-covers/1-A.TAREK001.jpg'
+		image: './albums-covers/2.webp'
 	},
 	{
 		id: 3,
 		name: 'dorak gai',
 		artist: 'wegz',
-		image: './albums-covers/2-dorak+gai+fixed.jpg'
+		image: './albums-covers/3.webp'
 	},
 	{
 		id: 4,
 		name: 'asyad el soot',
 		artist: 'wegz',
-		image: './albums-covers/3-WEGZART+HIGH+RES+4-3.jpg'
+		image: './albums-covers/4.webp'
 	},
 	{
 		id: 5,
 		name: 'el zar',
 		artist: 'wegz',
-		image: './albums-covers/4-WEGZ+COVERART2.jpg'
+		image: './albums-covers/5.webp'
 	},
 	{
 		id: 6,
 		name: 'mayhmeneesh',
 		artist: 'mousv',
-		image: './albums-covers/5-HAAAA.png'
+		image: './albums-covers/6.webp'
 	}
 ];
 const albums = writable(data);
