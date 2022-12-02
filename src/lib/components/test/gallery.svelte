@@ -5,9 +5,10 @@
   let imgs=[`${url}mm`,`${url}mp`,`${url}wegz`]
 </script>
 
-<main class="main">
+<!-- <main class="main">
   <Gallery imgs={imgs} />
-</main>
+</main> -->
+<img src="/mm.jpg" alt="">
 
 <style lang="scss">
   .main{

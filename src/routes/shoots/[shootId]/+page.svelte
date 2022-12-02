@@ -6,6 +6,7 @@
 	import Sidebar from "$lib/components/shoot-page/Sidebar.svelte";
 	import shoots from "$lib/stores/shoots";
 	import { onMount } from "svelte";
+	import { goto } from "$app/navigation";
 
   let shootId = $page.params.shootId as string
   let id = parseInt(shootId) - 1
@@ -15,6 +16,7 @@
   let Page : HTMLDivElement;
   let pageWidth : number;
   let smScreen = false;
+  let shootsLength = $shoots.length - 1
 
   const handleResize = () =>
   {
@@ -30,12 +32,20 @@
     window.addEventListener('resize',handleResize)
   })
 
+  const handleNav = (e : any) =>
+  {
+    const nav = e.detail.nav
+    let newId = nav == "next" ? id + 2 : id
+    newId = newId % shootsLength
+    goto(`/shoots/${newId}`)
+  }
+
 </script>
 
 <Header/>
 
 <div class="page-content" style:opacity='0' bind:clientWidth={pageWidth} bind:this={Page}>
-  <Sidebar shootName={shoot.name}/>
+  <Sidebar shootName={shoot.name} on:nav={handleNav}/>
   <main class="main">
     {#if smScreen }
     <HorizonalGallery {images}/>

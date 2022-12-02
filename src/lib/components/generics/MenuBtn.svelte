@@ -4,11 +4,11 @@
 
   const dispatach = createEventDispatcher()
 
-  let menuOpened = false; 
+  let isMenuOpened = false; 
 
   const handleMenuBtn = () =>
   {
-    if(menuOpened)
+    if(isMenuOpened)
     {
       menuBtnTl.reverse()
     }
@@ -17,8 +17,8 @@
       menuBtnTl.play()
     }
 
-    dispatach('menuBtnClicked',{menuOpened})
-    menuOpened = !menuOpened
+    dispatach('menuBtnClicked',{menuOpened: isMenuOpened})
+    isMenuOpened = !isMenuOpened
   }
 
   const menuBtnTl = gsap.timeline({paused: true})

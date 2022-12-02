@@ -1,45 +1,85 @@
 <script lang="ts">
 	import albums from '$lib/stores/albums';
 	import { onMount } from 'svelte';
-	import chagneAlbum from '$lib/utils/albums';
+	import {chagneAlbum, changeIndex, getScrollDirection} from '$lib/utils/albums';
+	import AlbumImage from './AlbumImage.svelte';
 
 	let scroll = true;
+	let direction = 1;
 
 	let albumArtist: HTMLHeadingElement;
 	let albumName: HTMLHeadingElement;
-	let imageCover: HTMLDivElement;
 	let albumImage: HTMLImageElement;
+
+	let currentAlbumIndex = 0;
+	let paused = true
 
 	const handleScroll = (e: any) => {
 		if (!scroll) return;
-
 		scroll = false;
-		chagneAlbum(albumArtist, albumName, albumImage, imageCover, $albums, e.deltaY);
+		paused = false
+		direction = getScrollDirection(e.deltaY)
+
+		currentAlbumIndex = changeIndex(e.deltaY)
+		chagneAlbum($albums);
 
 		setTimeout(() => {
 			scroll = true;
 		}, 1000);
 	};
 
+	// let touchStart = {x: 0, y: 0};
+	// let touchEnd = {x: 0, y: 0};
+	let touchStart = 0
+	let touchEnd = 0
+	let distance = 0;
+	
+	const clacDistance = (point1 : any, point2 : any) =>
+	{
+		let d = Math.sqrt( Math.pow(point1.x - point2.x,2) + Math.pow(point1.y - point2.y,2) )
+		return d
+	}
+
+	const handleTouchStart = (e : any) =>
+	{
+		distance = 0
+		// touchStart = {x : e.touches[0].clientX, y: e.touches[0].clientY}
+		touchStart = e.touches[0].clientX
+	}
+	const handleTouchEnd = (e : any) =>
+	{
+		touchEnd = e.changedTouches[0].clientX
+		distance = touchStart - touchEnd
+		let absDistance = Math.abs(distance)
+		if( absDistance > 100 )
+		{
+			handleScroll({deltaY : distance})
+		}
+		// touchEnd = {x : e.changedTouches[0].clientX, y: e.changedTouches[0].clientY}
+		// distance = clacDistance(touchStart, touchEnd)
+	}
+
+
 	onMount(() => {
 		window.addEventListener('wheel', handleScroll);
+		window.addEventListener('touchstart',handleTouchStart)
+		window.addEventListener('touchend',handleTouchEnd)
 	});
 </script>
 
-<div class="container">
 	<div class="album">
+
 		<div class="album_text-wraper">
 			<h1 class="album_artist album_text" bind:this={albumArtist}>{$albums[0].artist}</h1>
 		</div>
-		<div class="album_image">
-			<div class="image-cover" bind:this={imageCover} />
-			<img class="image" src={$albums[0].image} alt="" bind:this={albumImage} />
-		</div>
+
+		<AlbumImage albums={$albums}  {currentAlbumIndex} {paused} {direction}/>
+
 		<div class="album_text-wraper">
 			<h1 class="album_name album_text" bind:this={albumName}>{$albums[0].name}</h1>
 		</div>
+
 	</div>
-</div>
 
 <style lang="scss">
 	.album {
@@ -47,8 +87,7 @@
 		justify-content: space-between;
 		align-items: center;
 		width: 100%;
-		height: 100vh;
-		padding: 24px;
+		height: 100%;
 		user-select: none;
 	}
 	.album_text-wraper {
@@ -71,34 +110,13 @@
 		color: #333;
 	}
 
-	.album_image {
-		position: relative;
-		overflow: hidden;
-		aspect-ratio: 1;
-		width: 40vw;
-		max-width: 600px;
-	}
-	.image {
-		width: 100%;
-		object-fit: cover;
-	}
-	.image-cover {
-		position: absolute;
-		background-color: white;
-		z-index: 1;
-		width: 100%;
-		height: 100%;
-		transform: translate(100%);
-	}
 
 	@media screen and (max-width: 767px) {
 		.album {
+			padding-top: 24px;
+			padding-bottom: calc(80px + 24px);
 			flex-direction: column;
 			justify-content: end;
-			padding: calc(var(--header-height-sm) + 40px) 16px 24px;
-		}
-		.album_image{
-			width: auto
 		}
 		.album_text-wraper {
 			writing-mode: unset;

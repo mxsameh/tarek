@@ -20,6 +20,9 @@
 
 	let scrollY: number = 0;
 	let y: number = 0;
+	let touchStart = 0;
+	let touchY = 0;
+
 
 	/*-----------------------------------
 	/*  FUNCTIONS
@@ -84,6 +87,18 @@
 		addExtraProjects();
 		positionProjects(0);
 	};
+	
+	const handleTouchStart = ( e : any) =>
+	{
+		touchStart = e.clientY || e.touches[0].clientY
+	}
+
+	const handleTouchMove = ( e : any) =>
+	{
+		touchY = e.clientY || e.touches[0].clientY
+		scrollY += (touchY - touchStart) * 2.5;
+		touchStart = touchY
+	}
 
 	onMount(() => {
 		calculateDimensions();
@@ -95,6 +110,8 @@
 
 		window.addEventListener('wheel', handleScroll);
 		window.addEventListener('resize', handleResize);
+		window.addEventListener('touchstart', handleTouchStart)
+		window.addEventListener('touchmove', handleTouchMove)
 	});
 </script>
 

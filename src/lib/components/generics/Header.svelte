@@ -1,8 +1,9 @@
-<script>
+<script lang="ts">
+  export let isCentered = false;
   
 </script>
 
-<header class="header">
+<header class="header" class:center={isCentered}>
   <a href="/" class="logo">ahmed<br/>tarek</a>
 </header>
 
@@ -14,6 +15,10 @@
     top: 0;
     left: 0;
     mix-blend-mode: luminosity;
+  }
+  .center.header{
+    left: 50%;
+    transform: translateX(-50%);
   }
 	.logo {
 		text-transform: uppercase;

@@ -57,7 +57,6 @@
 </div>
 
 <style lang="scss">
-
   .page_content{
     padding: 0 24px;
     display: flex;
@@ -80,8 +79,11 @@
   @media screen and (max-width: 767px)
   {
     .page_content{
-      padding-top: 40px;
+      padding: 24px 16px 24px;
       display: block;
+    }
+    .main{
+      padding: 0;
     }
   }
 </style>

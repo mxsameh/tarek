@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
 	import Albums from "$lib/components/albums-page/AlbumCover.svelte";
+	import Menu from "$lib/components/exhibition-page/Menu.svelte";
 	import Header from "$lib/components/generics/Header.svelte";
 	import { onMount } from "svelte";
 
@@ -13,11 +14,6 @@
 		else smScreen = true
 	}
 
-	const close = () =>
-	{
-		goto('/')
-	}
-
 	onMount(() => {
 		checkSize()
 		window.addEventListener('resize',checkSize)
@@ -27,15 +23,11 @@
 
 <div class="page" style:opacity='0' bind:this={page}>
 
-	{#if smScreen }
-		<Header/>
-	{/if}
+	<Header isCentered={true}/>
 
 	<Albums/>
 
-	{#if !smScreen }
-	<button class="close-btn" on:click={close}>close</button>
-	{/if}
+	<Menu/>
 
 </div>
 
@@ -47,15 +39,12 @@
 		overflow: hidden;
 		position: relative;
 	}
-	.close-btn{
-		font-size: 30px;
-		text-transform: uppercase;
-		position: absolute;
-		z-index: 5;
-		top: 32px;
-		left: 50%;
-		transform: translateX(-50%);
-		cursor: pointer;
+
+	@media screen and (max-width : 767px)
+	{
+		.page{
+			padding-top: var(--header-height-sm);
+		}
 	}
 
 </style>

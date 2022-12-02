@@ -80,7 +80,8 @@
 		position: absolute;
 		top: 0;
 		left: 1;
-    z-index: 2
+    z-index: 2;
+		background-color: white;
 	}
 	.left,
 	.right {

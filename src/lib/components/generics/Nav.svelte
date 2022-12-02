@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { onMount } from "svelte";
 
 	const projects = [
 		{
@@ -31,13 +32,27 @@
 		}
 	];
 
+	export let navPosition = 'left';
+
+	let isCenter = navPosition == 'center' ? true : false
+
+	const checkScreen = () =>
+	{
+		let isSmallScreen = window.innerWidth < 768 ? true : false
+		if(isSmallScreen) isCenter = false
+		if(!isSmallScreen && navPosition == 'center') isCenter = true
+	}
+	onMount(() => {
+		window.addEventListener('resize',checkScreen)
+	})
+
 </script>
 
 <nav class="nav">
 
 	<!-- nav with shoots and projects -->
 	<div class="projects-wraper">
-		<nav class="projects-list">
+		<nav class="projects-list" class:center={isCenter}>
 			{#each projects as project, i}
 				<a
 					href={project.link}
@@ -52,7 +67,7 @@
 	</div>
 
 	<!-- list of work done -->
-	<div class="work">
+	<div class="work" class:center={isCenter}>
 		<a href="/jpeg-city" class="work-item">JPEG CITY</a>
 		<a href="/Talks" class="work-item">Talks</a>
 		<a href="/contact" class="work-item">About & Contact</a>
@@ -74,14 +89,24 @@
 	.projects-list {
 		display: flex;
 		flex-direction: column;
+		font-size: 20px;
 		gap: 16px;
 		margin: auto 0;
+		width: 100%;
 	}
 	.project {
 		text-transform: capitalize;
-		font-size: 20px;
+		font-size: inherit;
 		font-weight: 600;
 		width: fit-content;
+	}
+	.center{
+		align-items: center;
+		font-size: 32px;
+	}
+	.center.work{
+		font-size: 28px;
+		margin-bottom: calc( var(--menu-btn-height) + 32px );
 	}
 	.inactive {
 		&:hover {
@@ -114,9 +139,10 @@
 		gap: 8px;
     margin-bottom: 24px;
 		margin-top: auto;
+		font-size: 16px;
 	}
 	.work-item {
-		font-size: 16px;
+		font-size: inherit;
 		width: fit-content;
 		&:hover {
 			color: gray;
@@ -144,7 +170,6 @@
 			align-items: center;
 		}
 		.work{
-			// margin-top: 0;
 			margin-bottom: calc( var(--menu-btn-height) + 16px );
 		}
 	}

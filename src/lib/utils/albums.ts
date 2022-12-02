@@ -1,6 +1,6 @@
 import gsap from "gsap";
 
-let i = 0;
+let albumIndex = 0;
 let direction = 1;
 
 // GET THE SCROLL DIRECTION
@@ -12,60 +12,42 @@ const getScrollDirection = ( y : number ) =>
   return direction;
 }
 
-
 // CHANGE INDEX
-const changeIndex = () =>
+const changeIndex = (y : number) =>
 {
-		let index = direction > 0 ? i + 1 : i - 1;
-		index = gsap.utils.wrap(0, 6, index);
-    return index
+  direction = y > 0 ? 1 : -1;
+  let index = direction > 0 ? albumIndex + 1 : albumIndex - 1;
+  index = gsap.utils.wrap(0, 6, index);
+  albumIndex = index
+  return index
 }
 
 // CHANGE ALBUM COVER
-const chagneAlbum = ( albumArtist : HTMLElement, albumName : HTMLElement, albumImage : HTMLImageElement, imageCover : HTMLElement, albums : any, y : number) =>
+const chagneAlbum = (albums : any) =>
 {
-  if(!albumArtist) return
-  i = changeIndex()
-  direction = getScrollDirection(y)
 
+  const albumArtist = document.querySelector('.album_artist') as HTMLHeadingElement
+  const albumName = document.querySelector('.album_name') as HTMLHeadingElement
+   
   const textTl = gsap.timeline();
   textTl
   .to([albumArtist, albumName],
     {
       x: `${direction * 100}%`,
       onComplete: function () {
-        albumArtist.innerText = albums[i].artist;
-        albumName.innerText = albums[i].name;
+        albumArtist.innerText = albums[albumIndex].artist;
+        albumName.innerText = albums[albumIndex].name;
       }
     })
-  .set('.album_artist, .album_name', {
+  .set([albumArtist, albumName], {
     x: `${direction * -100}%`
   })
-  .to('.album_artist, .album_name', {
+  .to([albumArtist, albumName], {
     x: 0
   });
 
-  const imageTL = gsap.timeline();
-  imageTL
-    .fromTo(
-      imageCover,
-      {
-        x: `${direction * -100}%`
-      },
-      {
-        x: 0,
-        y: 0,
-        onComplete: function () {
-          albumImage.src = albums[i].image
-        }
-      }
-    )
-    .to(imageCover, {
-      x: `${direction * -100}%`,
-      delay: 0.1
-    });
 
 }
 
 
-export default chagneAlbum
+export {chagneAlbum, changeIndex, getScrollDirection}
