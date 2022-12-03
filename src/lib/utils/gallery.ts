@@ -47,6 +47,12 @@ const getColsNumber = (gallerWidth: number) => {
 
 const getColsWidth = (galleryWidth: number) => {
 	colsWidth = [];
+	if(colsNumber == 1)
+	{
+		colsWidth.push(galleryWidth)
+		return colsWidth
+	}
+
 	galleryWidth = galleryWidth - (colGap * colsNumber - 1);
 	let colWidth = Math.floor(galleryWidth / colsNumber);
 

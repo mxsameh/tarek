@@ -1,6 +1,6 @@
 <script lang="ts">
 	import positionImages, { scrollImages } from '$lib/utils/gallery';
-	import { onDestroy, onMount } from 'svelte';
+	import { onMount, afterUpdate } from 'svelte';
 
 	export let imgs : any;
 	export let dimens : any = [];
@@ -30,22 +30,28 @@
 	// 	alert('copied!!')
 	// }
 
+	let galleryImages : NodeListOf<HTMLImageElement>;
 	onMount(() => {
-		const $imgs = document.querySelectorAll('.gallery_img') as NodeListOf<HTMLImageElement>;
+		galleryImages = document.querySelectorAll('.gallery_img') as NodeListOf<HTMLImageElement>;
 		// imgss = $imgs
 		
-		positionImages($imgs, gallery);
+		positionImages(galleryImages, gallery);
 
 		// RESIZE EVENT LISTENER
 		window.addEventListener('resize', () => {
-			if(gallery) positionImages($imgs, gallery);
+			if(gallery) positionImages(galleryImages, gallery);
 		});
 
 		// SCROLL EVENT LISTENER
 		window.addEventListener('scroll', () => {
-			scrollImages($imgs);
+			scrollImages(galleryImages);
 		});
 	});
+
+	afterUpdate(()=>{
+		galleryImages = document.querySelectorAll('.gallery_img') as NodeListOf<HTMLImageElement>;
+		positionImages(galleryImages,gallery)
+	})
 
 	let active = false
 

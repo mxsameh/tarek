@@ -34,6 +34,7 @@
       overflow-x: scroll;
       scroll-behavior: smooth;
       scrollbar-width: none;
+      align-items: center;
     }
     &_img{
       height: clamp(500px,80vh,80vh);
